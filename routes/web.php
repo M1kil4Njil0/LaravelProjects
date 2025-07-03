@@ -1,0 +1,17 @@
+<?php
+
+use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Route;
+
+Route::get('/', function () {
+    return '<a href="'.route('my_page').'">Моя страница</a>';
+});
+
+Route::get('/posts', [\App\Http\Controllers\PostController::class, 'index'])->name('my_page');
+
+Route::get('/posts/create', [\App\Http\Controllers\PostController::class, 'create']);
+Route::get('/posts/update', [\App\Http\Controllers\PostController::class, 'update']);
+Route::get('/posts/delete', [\App\Http\Controllers\PostController::class, 'delete']);
+Route::get('/posts/first_or_create', [\App\Http\Controllers\PostController::class, 'firstOrCreate']);
+Route::get('/posts/update_or_create', [\App\Http\Controllers\PostController::class, 'updateOrCreate']);
+
