@@ -7,14 +7,15 @@ Route::get('/', function () {
     return '<a href="'.route('my_page').'">Моя страница</a>';
 });
 
-Route::get('/posts', [\App\Http\Controllers\PostController::class, 'index'])->name('post.index');
-Route::get('/posts/create', [\App\Http\Controllers\PostController::class, 'create'])->name('post.create');
-
-Route::post('/posts/store', [\App\Http\Controllers\PostController::class, 'store'])->name('post.store');
-Route::get('/posts/{post}', [\App\Http\Controllers\PostController::class, 'show'])->name('post.show');
-Route::get('/posts/{post}/edit', [\App\Http\Controllers\PostController::class, 'edit'])->name('post.edit');
-Route::patch('/posts/{post}', [\App\Http\Controllers\PostController::class, 'update'])->name('post.update');
-Route::delete('/posts/{post}', [\App\Http\Controllers\PostController::class, 'destroy'])->name('post.delete');
+Route::prefix('posts')->name('post.')->group(function () {
+    Route::get('/', [\App\Http\Controllers\Post\IndexController::class, '__invoke'])->name('index');
+    Route::get('/create', [\App\Http\Controllers\Post\CreateController::class, '__invoke'])->name('create');
+    Route::post('/', [\App\Http\Controllers\Post\StoreController::class, '__invoke'])->name('store');
+    Route::get('/{post}', [\App\Http\Controllers\Post\ShowController::class, '__invoke'])->name('show');
+    Route::get('/{post}/edit', [\App\Http\Controllers\Post\EditController::class, '__invoke'])->name('edit');
+    Route::patch('/{post}', [\App\Http\Controllers\Post\UpdateController::class, '__invoke'])->name('update');
+    Route::delete('/{post}', [\App\Http\Controllers\Post\DestroyController::class, '__invoke'])->name('delete');
+});
 
 
 Route::get('/posts/first_or_create', [\App\Http\Controllers\PostController::class, 'firstOrCreate']);
