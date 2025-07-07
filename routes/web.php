@@ -13,8 +13,8 @@ Route::get('/posts/create', [\App\Http\Controllers\PostController::class, 'creat
 Route::post('/posts/store', [\App\Http\Controllers\PostController::class, 'store'])->name('post.store');
 Route::get('/posts/{post}', [\App\Http\Controllers\PostController::class, 'show'])->name('post.show');
 Route::get('/posts/{post}/edit', [\App\Http\Controllers\PostController::class, 'edit'])->name('post.edit');
-Route::get('/posts/{post}', [\App\Http\Controllers\PostController::class, 'update'])->name('post.update');
-Route::delete('/posts/delete', [\App\Http\Controllers\PostController::class, 'destroy'])->name('post.delete');
+Route::patch('/posts/{post}', [\App\Http\Controllers\PostController::class, 'update'])->name('post.update');
+Route::delete('/posts/{post}', [\App\Http\Controllers\PostController::class, 'destroy'])->name('post.delete');
 
 
 Route::get('/posts/first_or_create', [\App\Http\Controllers\PostController::class, 'firstOrCreate']);
